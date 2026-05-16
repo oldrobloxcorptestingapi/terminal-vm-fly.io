@@ -15,10 +15,24 @@ COPY . .
 # ── Runtime stage ─────────────────────────────────────────────────────────────
 FROM node:20-slim
 
-# bash is the default shell for PTY sessions.
+# Install bash + common tools + deps needed by Nix
 RUN apt-get update && apt-get install -y --no-install-recommends \
-      bash \
+      bash curl git wget vim nano unzip ca-certificates xz-utils \
     && rm -rf /var/lib/apt/lists/*
+
+# Install Nix (single-user, no daemon — works fine in Docker)
+RUN curl -L https://nixos.org/nix/install | sh -s -- --no-daemon
+
+# Make nix available to all bash sessions (PTY shells will source this)
+ENV NIX_PROFILES="/nix/var/nix/profiles/default /root/.nix-profile"
+ENV PATH="/root/.nix-profile/bin:/nix/var/nix/profiles/default/bin:$PATH"
+ENV NIX_SSL_CERT_FILE="/etc/ssl/certs/ca-certificates.crt"
+
+# Source nix in every interactive bash session so nix-shell works immediately
+RUN echo '. /root/.nix-profile/etc/profile.d/nix.sh' >> /root/.bashrc
+
+# Install opencode globally (npm package name is opencode-ai)
+RUN npm install -g opencode-ai
 
 WORKDIR /app
 
