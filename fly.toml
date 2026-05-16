@@ -1,10 +1,10 @@
-# fly.toml app configuration file generated for terminal-vm-fly-io on 2026-05-16T03:31:28Z
+# fly.toml app configuration file generated for terminal-vm-fly-io on 2026-05-16T03:54:34Z
 #
 # See https://fly.io/docs/reference/configuration/ for information about how to use this file.
 #
 
 app = 'terminal-vm-fly-io'
-primary_region = 'iad'
+primary_region = 'ord'
 
 [build]
 
