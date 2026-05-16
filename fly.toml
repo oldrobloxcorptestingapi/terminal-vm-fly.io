@@ -1,7 +1,7 @@
 # fly.toml — VOID Proxy
 # Replace "void-proxy" below with your actual app name from `fly launch`.
 
-app = "void-proxy"
+app = "terminal-vm-fly.io"
 primary_region = "iad"          # Washington DC — change to nearest: ord, lax, lhr, cdg, nrt …
 
 [build]
