@@ -1,0 +1,20 @@
+{
+  "name": "void-proxy",
+  "version": "3.0.0",
+  "description": "VOID Proxy — UV bare server + WebSocket PTY terminal (Fly.io)",
+  "type": "module",
+  "scripts": {
+    "start": "node server.js",
+    "dev": "node server.js"
+  },
+  "dependencies": {
+    "@tomphttp/bare-server-node": "^2.0.2",
+    "cors": "^2.8.5",
+    "express": "^4.18.2",
+    "node-pty": "^1.0.0",
+    "ws": "^8.18.0"
+  },
+  "engines": {
+    "node": ">=18"
+  }
+}
